@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 10-Fev-2020 às 02:55
+-- Tempo de geração: 10-Fev-2020 às 17:15
 -- Versão do servidor: 8.0.19
 -- versão do PHP: 7.4.2
 
@@ -30,11 +30,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `custumer` (
   `id` int NOT NULL,
-  `nome` varchar(200) COLLATE utf8_bin NOT NULL,
+  `nome` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `nasc` date NOT NULL,
-  `cpf` varchar(100) COLLATE utf8_bin NOT NULL,
-  `rg` varchar(100) COLLATE utf8_bin NOT NULL,
-  `telefone` varchar(100) COLLATE utf8_bin NOT NULL
+  `cpf` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `rg` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `telefone` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -45,9 +45,9 @@ CREATE TABLE `custumer` (
 
 CREATE TABLE `users` (
   `id` int NOT NULL,
-  `nome` varchar(200) COLLATE utf8_bin NOT NULL,
-  `email` varchar(200) COLLATE utf8_bin NOT NULL,
-  `senha` varchar(200) COLLATE utf8_bin NOT NULL
+  `nome` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `email` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `senha` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -55,7 +55,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nome`, `email`, `senha`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$x/jUnbPUk/LhUGqkTWGKlOwiAFoXi9C5ISPqxfDeKCC4toKwHVVJW');
+(1, 'admin', 'admin@gmail.com', '$2y$10$x/jUnbPUk/LhUGqkTWGKlOwiAFoXi9C5ISPqxfDeKCC4toKwHVVJW'),
+(2, 'Matheus', 'matheus.pereira4025@gmail.com', '$2y$10$mtM1eAk29DI9EsypIlLwge8OCipwB2BB2KK/tTlv5fQgvLBLW09xK'),
+(3, 'Thais', 't@gmail.com', '$2y$10$bWTLRkXfZs8h2Jr1gHjA3OUr5SUlfL/PFMXfYyUJFRtSJRX9kseYS'),
+(4, 'Jorge', 'jr@gmail.com', '$2y$10$/IjCqYfNoH5ZTwKGBTBHUu8027CcHPDp3r6eUFz6LhzPJ91mWE9Xq'),
+(5, 'Maria', 'ma@gmail.com', '$2y$10$n2w8LerzepIlwKoF9vQ8h.Ryuh4tXWS.jb8w8NBhIPgTrA8h7T0Qi');
 
 --
 -- Índices para tabelas despejadas
@@ -87,7 +91,7 @@ ALTER TABLE `custumer`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
