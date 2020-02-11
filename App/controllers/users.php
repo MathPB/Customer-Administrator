@@ -32,6 +32,7 @@ class Users extends Controller {
     }
 
     public function insertUser(){
+        
         Auth::checkLogin();
 
         $mensagem = array();
@@ -60,6 +61,9 @@ class Users extends Controller {
     }
 
     public function backHome(){
+
+        Auth::checkLogin();
+        
         $cliente = $this->model('Customer');
         $dados = $cliente->getAll();
 

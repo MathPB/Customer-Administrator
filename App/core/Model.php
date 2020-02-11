@@ -8,7 +8,7 @@ class Model {
 
     public static function getConn(){
         if(!isset(self::$instance)){
-            self::$instance = new \PDO ('mysql:host=localhost;dbname=adm', 'root', '1590');
+            self::$instance = new \PDO ('mysql:host=localhost;dbname=adm', 'root', '12345');
         };
 
         return self::$instance;
