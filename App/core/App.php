@@ -2,7 +2,7 @@
 
 namespace App\Core;  
 class App {
-    protected $controller = 'home';
+    protected $controller = 'users';
     protected $method = 'index';
     protected $params = [];
 

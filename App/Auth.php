@@ -7,7 +7,7 @@ use \App\Core\Model;
 class Auth {
     public static function Login($email, $senha){
         $sql = "SELECT * FROM users WHERE email = ?";
-        $stmt = Model::getCOnn()->prepare($sql);
+        $stmt = Model::getConn()->prepare($sql);
         $stmt->bindValue(1, $email);
         $stmt->execute();
 
@@ -17,7 +17,6 @@ class Auth {
                 $_SESSION['logado'] = true;
                 $_SESSION['userId'] = $resultado['id'];
                 $_SESSION['userNome'] = $resultado['nome'];
-                header('Location: /home/register');
             } else{
                 return "Senha Inválida";
             };
@@ -29,6 +28,13 @@ class Auth {
     public static function Logout(){
         session_destroy();
         header('Location: /');
+    }
+
+    public static function checkLogin(){
+        if(!isset($_SESSION['logado'])){
+            header('Location: /home/login');
+            die;
+        }
     }
 
     public static function Test(){

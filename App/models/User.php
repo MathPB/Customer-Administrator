@@ -17,8 +17,6 @@ class User extends Model{
         
         if($stmt->execute()){
             return "Cadastrado com sucesso!";
-
-            header('Location: /home/register');
         } else {
             return "Erro ao cadastrar!";
         };

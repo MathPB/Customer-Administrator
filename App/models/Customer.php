@@ -4,7 +4,7 @@ use App\Core\Model;
 
 // Model Singleton
 
-class Cliente extends Model{
+class Customer extends Model{
     public $nome;
     public $data;
     public $cpf;
@@ -13,7 +13,7 @@ class Cliente extends Model{
 
 
     public function getAll(){
-        $sql = "SELECT * FROM custumer";
+        $sql = "SELECT * FROM customer";
         $stmt = Model::getConn()->prepare($sql);
         $stmt->execute();
 
@@ -25,8 +25,26 @@ class Cliente extends Model{
         };
     }
 
+    public function update($id){
+        $sql = "UPDATE customer SET nome = ?, nasc = ?, cpf = ?, rg = ?, telefone = ? WHERE id = ?";
+        $stmt = Model::getConn()->prepare($sql);
+        $stmt->bindValue(1, $this->nome);
+        $stmt->bindValue(2, $this->data);
+        $stmt->bindValue(3, $this->cpf);
+        $stmt->bindValue(4, $this->rg);
+        $stmt->bindValue(5, $this->telefone);
+        $stmt->bindValue(6, $id);
+
+        if($stmt->execute()){
+            return "Atualizado com sucesso!";
+            
+        } else {
+            return "Erro ao atualizar!";
+        };
+    }
+
     public function save(){
-        $sql = "INSERT INTO custumer (nome, nasc, cpf, rg, telefone) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO customer (nome, nasc, cpf, rg, telefone) VALUES (?, ?, ?, ?, ?)";
         $stmt = Model::getConn()->prepare($sql);
         $stmt->bindValue(1, $this->nome);
         $stmt->bindValue(2, $this->data);
@@ -35,14 +53,13 @@ class Cliente extends Model{
         $stmt->bindValue(5, $this->telefone);
         if($stmt->execute()){
             return "Cadastrado com sucesso!";
-            header('Location: /home/register');
         } else {
             return "Erro ao cadastrar!";
         };
     }
 
     public function delete($id){
-        $sql = "DELETE FROM custumer WHERE id = ?";
+        $sql = "DELETE FROM customer WHERE id = ?";
         $stmt = Model::getConn()->prepare($sql);
         $stmt->bindValue(1, $id);
 
@@ -54,7 +71,7 @@ class Cliente extends Model{
     }
 
     public function findId($id){
-        $sql = "SELECT * FROM custumer WHERE id = ?";
+        $sql = "SELECT * FROM customer WHERE id = ?";
         $stmt = Model::getConn()->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();

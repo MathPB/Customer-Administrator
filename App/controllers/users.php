@@ -2,10 +2,10 @@
 use App\Core\Controller;
 use App\Auth;
 
-class Home extends Controller {
+class Users extends Controller {
 
     public function index(){
-        $this->view('login');
+        $this->view('users/login');
     }
 
 
@@ -15,18 +15,24 @@ class Home extends Controller {
         if(isset($_POST['entrar'])){
             if((empty($_POST['email'])) || (empty($_POST['senha']))){
                 $mensagem[] = "Campo e-mail e senha obrigatórios!";
+
+                $this->view('local', $dados = ['mensagem'=> $mensagem]);
             } else{
                 $email = $_POST['email'];
                 $senha = $_POST['senha'];
                 $mensagem[] = Auth::Login($email, $senha);
             }
+
+            $cliente = $this->model('Customer');
+            $dados = $cliente->getAll();
+            $this->view('local', $dados = ['registros'=> $dados]);
         };
 
-        $this->view('home/local', $dados = ['mensagem'=> $mensagem]);
+        
     }
 
-    public function insertReg(){
-        // Auth::checkLogin();
+    public function insertUser(){
+        Auth::checkLogin();
 
         $mensagem = array();
 
@@ -41,19 +47,27 @@ class Home extends Controller {
             $user->senha = $senha;
 
             $mensagem[] = $user->save();
+
+            $cliente = $this->model('Customer');
+            $dados = $cliente->getAll();
+    
+
+            $this->view('local', $dados = ['mensagem'=> $mensagem, 'registros'=> $dados]);
         };
 
-        $this->view('home/register', $dados = ['mensagem'=> $mensagem]);
+        $this->view('users/register', $dados = ['mensagem'=> $mensagem]);
 
     }
 
-    public function register(){
-        $cliente = $this->model('Cliente');
+    public function backHome(){
+        $cliente = $this->model('Customer');
         $dados = $cliente->getAll();
+
         $this->view('local', $dados = ['registros'=> $dados]);
     }
 
-    public function cadastrar(){
+
+    public function registerUser(){
         $this->view('cadastrar');
     }
 
@@ -62,7 +76,7 @@ class Home extends Controller {
     }
 
     
-    public function cliCadastro(){
+    public function pathRegister(){
         $this->view('cliente/criar');
     }
 }

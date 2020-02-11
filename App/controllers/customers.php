@@ -1,9 +1,11 @@
 <?php
 use App\Core\Controller;
+use App\Auth;
+class Customers extends Controller {
 
-class Clientes extends Controller {
+    public function insertCustomer(){
 
-    public function inserir(){
+        Auth::checkLogin();
      
         $mensagem = array();
 
@@ -11,7 +13,7 @@ class Clientes extends Controller {
             if(empty($_POST['nome'] && $_POST['data'] && $_POST['cpf'] && $_POST['rg'] && $_POST['telefone'])){
                 $mensagem[] = "Todos os campos devem ser preenchidos!!!";
             } else {
-                $cliente = $this->model('Cliente');
+                $cliente = $this->model('Customer');
                 $cliente->nome = $_POST['nome'];
                 $cliente->data = $_POST['data'];
                 $cliente->cpf = $_POST['cpf'];
@@ -19,32 +21,38 @@ class Clientes extends Controller {
                 $cliente->telefone = $_POST['telefone'];             
                 $mensagem[] = $cliente->save();
             };
+
+        } else{
+            $this->view('customers/insert');
         };
 
-        header('Location: /home/register');
+        $cliente = $this->model('Customer');
+        $dados = $cliente->getAll();
+
+        $this->view('local', $dados = ['mensagem'=> $mensagem, 'registros'=> $dados]);
     }
 
-    public function excluir($id = ''){
+    public function deleteCustomer($id = ''){
         
         Auth::checkLogin();
 
         $mensagem = array();
 
-        $cliente = $this->model('Cliente');
+        $cliente = $this->model('Customer');
         $mensagem[] = $cliente->delete($id);
 
         $dados = $cliente->getAll();
 
-        header('Location: /home/register');
+        $this->view('local', $dados = ['mensagem'=> $mensagem, 'registros'=> $dados]);
     }
 
-    public function editar($id = ''){
+    public function updateCustomer($id){
         
-        // Auth::checkLogin();
+        Auth::checkLogin();
 
         $mensagem = array();
 
-        $cliente = $this->model('Cliente');
+        $cliente = $this->model('Customer');
 
         if(isset($_POST['atualizar'])){
             $cliente->nome = $_POST['nome'];
@@ -52,11 +60,17 @@ class Clientes extends Controller {
             $cliente->cpf = $_POST['cpf'];
             $cliente->rg = $_POST['rg'];
             $cliente->telefone = $_POST['telefone'];  
-            $mensagem[] = $cliente->uptdate($id);
+            $mensagem[] = $cliente->update($id);
+
+        } else{
+            $dados = $cliente->findId($id);
+            $this->view('customers/update', $dados = ['mensagem'=> $mensagem, 'registros'=> $dados]);
         };
 
-        $dados = $cliente->findId($id);
-        $this->view('cliente/editar', $dados = ['mensagem'=> $mensagem, 'registros'=> $dados]);
+        $cliente = $this->model('Customer');
+        $dados = $cliente->getAll();
+
+        $this->view('local', $dados = ['mensagem'=> $mensagem, 'registros'=> $dados]);
 
     }
 }

@@ -11,7 +11,7 @@
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-    <div class="container"> <a class="navbar-brand" href="#">
+    <div class="container"> <a class="navbar-brand" href="">
         <i class="fa d-inline fa-lg fa-circle-o"></i>
         <b>Cadastrar cliente</b>
       </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar11">
@@ -19,7 +19,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar11">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"> <a class="nav-link" href="/home/register">Home</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/users/backHome">Home</a> </li>
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"> <a class="nav-link" href="#">Olá <?php echo $_SESSION['userNome']; ?></a></li>
@@ -32,15 +32,15 @@
         <div class="container">
             <div class="row">
                 <div class="mx-auto col-md-6 col-10 bg-white p-5" >
-                    <h3 class="mb-4" style="#343A40">Atualizar cliente</h1>
-                <form action="/clientes/editar/<?php echo $cliente['id']; ?>" method="POST">
-                    <div class="form-group"><input type="text" class="form-control" placeholder="Nome" name="nome" required value="<?php echo $data['registros']['nome']; ?>"></div>
-                    <div class="form-group"><input type="text" class="form-control" placeholder="Data" name="data" onkeypress="$(this).mask('00/00/0000');" required value="<?php echo $data['registros']['nasc']; ?>"></div>
-                    <div class="form-group"><input type="text" class="form-control" placeholder="CPF" name="cpf" onkeypress="$(this).mask('000.000.000-00');" required value="<?php echo $data['registros']['cpf']; ?>"></div>
-                    <div class="form-group"><input type="text" class="form-control" placeholder="RG" name="rg" onkeypress="$(this).mask('00.000.000-0');" required value="<?php echo $data['registros']['rg']; ?>"></div>
-                    <div class="form-group"><input type="text" class="form-control" placeholder="Telefone" name="telefone" onkeypress="$(this).mask('(00) 00000-0000');" required value="<?php echo $data['registros']['telefone']; ?>"></div>
+                    <h3 class="mb-4" style="#343A40">Cadastrar cliente</h1>
+                <form action="/customers/insertCustomer" method="POST">
+                    <div class="form-group"><input type="text" class="form-control" placeholder="Nome" name="nome" required></div>
+                    <div class="form-group"><input type="text" class="form-control" placeholder="Data" name="data"  onkeypress="$(this).mask('00/00/0000');" required></div>
+                    <div class="form-group"><input type="text" class="form-control" placeholder="CPF" name="cpf" onkeypress="$(this).mask('000.000.000-00');" required></div>
+                    <div class="form-group"><input type="text" class="form-control" placeholder="RG" name="rg" onkeypress="$(this).mask('00.000.000-0');" required></div>
+                    <div class="form-group"><input type="text" class="form-control" placeholder="Telefone" name="telefone" onkeypress="$(this).mask('(00) 00000-0009');" required></div>
                     <div class="form-group mb-3"> <small class="form-text text-muted text-right">
-                    </small> </div> <button type="submit" class="btn btn-dark" name="atualziar">Atualizar</button>
+                    </small> </div> <button type="submit" class="btn btn-dark" name="cadastrar">Cadastrar</button>
                 </form>
                 </div>
             </div>

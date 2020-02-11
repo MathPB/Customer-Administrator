@@ -11,18 +11,18 @@
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-    <div class="container"> <a class="navbar-brand" href="/">
+    <div class="container"> <a class="navbar-brand" href="">
         <i class="fa d-inline fa-lg fa-circle-o"></i>
-        <b>Cadastrar cliente</b>
+        <b>Cadastrar usuário</b>
       </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar11">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar11">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"> <a class="nav-link" href="/home/register">Home</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/users/backHome">Home</a> </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"> <a class="nav-link" href="#">Olá <?php echo $_SESSION['userNome']; ?></a></li>
+          <li class="nav-item"> <a class="nav-link" href="">Olá <?php echo $_SESSION['userNome']; ?></a></li>
         </ul>
       </div>
     </div>
@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="mx-auto col-md-6 col-10 bg-white p-5" >
                     <h3 class="mb-4" style="#343A40">Cadastrar usuário</h1>
-                <form action="/home/insertReg" method="POST">
+                    <form action="/users/insertUser" method="POST">
                     <div class="form-group"> <input type="text" class="form-control" placeholder="Nome" name="nome"> </div>
                     <div class="form-group"> <input type="email" class="form-control" placeholder="Email" name="email"> </div>
                     <div class="form-group mb-3"> <input type="password" class="form-control" placeholder="Senha" name="senha"> <small class="form-text text-muted text-right">

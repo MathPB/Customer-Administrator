@@ -12,7 +12,7 @@
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-    <div class="container"> <a class="navbar-brand" href="/home/cliCadastro">
+    <div class="container"> <a class="btn btn-primary" href="/customers/insertCustomer">
         <i class="fa d-inline fa-lg fa-circle-o"></i>
         <b>Cadastrar clientes</b>
       </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar11">
@@ -20,16 +20,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar11">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"> <a class="nav-link" href="/home/cadastrar">Cadastrar usuário</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="/home/sair">Sair</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/users/insertUser">Cadastrar usuário</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/users/sair">Sair</a> </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"> <a class="nav-link" href="#">Olá <?php echo $_SESSION['userNome']; ?></a></li>
+          <li class="nav-item"> <a class="nav-link" href="">Olá <?php echo $_SESSION['userNome']; ?></a></li>
         </ul>
       </div>
     </div>
     </nav>
 
+
+    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+    <?php
+        if(!empty($data['mensagem'])){
+          foreach($data['mensagem'] as $m){
+            echo $m."<br>";
+          };
+        }
+      ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <div class="py-5" >
       <h2 class="py-5 d-flex text-center justify-content-center">Clientes cadastrados</h2>
     <div class="container">
@@ -51,8 +64,8 @@
               <tbody>
                 <?php foreach ($data['registros'] as $cliente) {?>
                 <tr>
-                  <th><a href="/clientes/excluir/<?php echo $cliente['id']; ?>">Excluir</a></th>
-                  <th><a href="/clientes/editar/<?php echo $cliente['id']; ?>">Editar</a></th>
+                  <th><a href="/customers/deleteCustomer/<?php echo $cliente['id']; ?>">Excluir</a></th>
+                  <th><a href="/customers/updateCustomer/<?php echo $cliente['id']; ?>">Editar</a></th>
                   <td><?php echo $cliente['nome']; ?></td>
                   <td><?php echo $cliente['nasc']; ?></td>
                   <td><?php echo $cliente['cpf']; ?></td>
@@ -67,9 +80,6 @@
       </div>
     </div>
   </div>
-
-
-    <?php require_once '../App/views/'.$view.'.php';?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
