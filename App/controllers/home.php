@@ -8,6 +8,7 @@ class Home extends Controller {
         $this->view('login');
     }
 
+
     public function login(){
         $mensagem = array();
 
@@ -42,12 +43,14 @@ class Home extends Controller {
             $mensagem[] = $user->save();
         };
 
-        $this->view('register', $dados = ['mensagem'=> $mensagem]);
+        $this->view('home/register', $dados = ['mensagem'=> $mensagem]);
 
     }
 
     public function register(){
-        $this->view('local');
+        $cliente = $this->model('Cliente');
+        $dados = $cliente->getAll();
+        $this->view('local', $dados = ['registros'=> $dados]);
     }
 
     public function cadastrar(){
@@ -55,7 +58,7 @@ class Home extends Controller {
     }
 
     public function sair(){
-        $this->view('login');
+        Auth::Logout();
     }
 
     

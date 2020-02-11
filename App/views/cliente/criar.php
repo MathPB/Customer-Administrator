@@ -35,7 +35,7 @@
                     <h3 class="mb-4" style="#343A40">Cadastrar cliente</h1>
                 <form action="/clientes/inserir" method="POST">
                     <div class="form-group"><input type="text" class="form-control" placeholder="Nome" name="nome" required></div>
-                    <div class="form-group"><input type="date" class="form-control" placeholder="Data" name="data" required></div>
+                    <div class="form-group"><input type="text" class="form-control" placeholder="Data" name="data"  onkeypress="$(this).mask('00/00/0000');" required></div>
                     <div class="form-group"><input type="text" class="form-control" placeholder="CPF" name="cpf" onkeypress="$(this).mask('000.000.000-00');" required></div>
                     <div class="form-group"><input type="text" class="form-control" placeholder="RG" name="rg" onkeypress="$(this).mask('00.000.000-0');" required></div>
                     <div class="form-group"><input type="text" class="form-control" placeholder="Telefone" name="telefone" onkeypress="$(this).mask('(00) 00000-0009');" required></div>

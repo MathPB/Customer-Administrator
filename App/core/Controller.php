@@ -9,7 +9,7 @@ class Controller {
         return new $model;
     }
 
-    public function view($view){
+    public function view($view, $data = []){
         require_once '../App/views/'.$view.'.php';
     }
 }

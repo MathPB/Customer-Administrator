@@ -28,15 +28,7 @@ class Auth {
 
     public static function Logout(){
         session_destroy();
-        header('Location: /home/index');
-        unset($url[2]);
-    }
-
-    public static function checkLogin(){
-        if(isset($_SESSION['logado'])){
-            header('Location: /home/template');
-            die;
-        }
+        header('Location: /');
     }
 
     public static function Test(){

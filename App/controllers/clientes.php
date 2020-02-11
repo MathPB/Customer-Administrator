@@ -21,6 +21,42 @@ class Clientes extends Controller {
             };
         };
 
-        $this->view('local', $dados = ['mensagem'=> $mensagem]);
+        header('Location: /home/register');
+    }
+
+    public function excluir($id = ''){
+        
+        Auth::checkLogin();
+
+        $mensagem = array();
+
+        $cliente = $this->model('Cliente');
+        $mensagem[] = $cliente->delete($id);
+
+        $dados = $cliente->getAll();
+
+        header('Location: /home/register');
+    }
+
+    public function editar($id = ''){
+        
+        // Auth::checkLogin();
+
+        $mensagem = array();
+
+        $cliente = $this->model('Cliente');
+
+        if(isset($_POST['atualizar'])){
+            $cliente->nome = $_POST['nome'];
+            $cliente->data = $_POST['data'];
+            $cliente->cpf = $_POST['cpf'];
+            $cliente->rg = $_POST['rg'];
+            $cliente->telefone = $_POST['telefone'];  
+            $mensagem[] = $cliente->uptdate($id);
+        };
+
+        $dados = $cliente->findId($id);
+        $this->view('cliente/editar', $dados = ['mensagem'=> $mensagem, 'registros'=> $dados]);
+
     }
 }
